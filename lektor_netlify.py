@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import click
 import requests
 from lektor.pluginsystem import Plugin
 from lektor.publisher import Publisher, Command
@@ -8,6 +9,7 @@ from werkzeug import urls
 
 class NetlifyPublisher(Publisher):
     def publish(self, target_url, credentials=None, server_info=None, **extra):
+        draft = '--draft' in click.get_current_context().args
         host = target_url.host
 
         if credentials and credentials.get('key'):
@@ -47,14 +49,18 @@ class NetlifyPublisher(Publisher):
             response.raise_for_status()
             site_id = response.json()['site_id']
 
-        cmd = Command([
+        cmd = [
             'netlify',
             '-t', access_token,
             'deploy',
             '-s', site_id,
-            '-p', self.output_path])
+            '-p', self.output_path]
 
-        for line in cmd:
+        if draft:
+            yield "Deploying as draft"
+            cmd.append('--draft')
+
+        for line in Command(cmd):
             yield line
 
 
