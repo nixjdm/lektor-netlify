@@ -11,7 +11,8 @@ from werkzeug import urls
 
 class NetlifyPublisher(Publisher):
     def publish(self, target_url, credentials=None, server_info=None, **extra):
-        draft = '--draft' in click.get_current_context().args
+        click_context = click.get_current_context(True)
+        draft = '--draft' in click_context.args if click_context else None
         host = target_url.host
 
         if credentials and credentials.get('key'):
