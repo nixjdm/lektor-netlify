@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import click
+import os
 import requests
 from lektor.pluginsystem import Plugin
 from lektor.publisher import Publisher, Command
@@ -16,6 +17,8 @@ class NetlifyPublisher(Publisher):
             access_token = credentials['key']
         elif server_info and server_info.extra.get('key'):
             access_token = server_info.extra['key']
+        elif os.environ.get('LEKTOR_DEPLOY_KEY'):
+            access_token = os.environ.get('LEKTOR_DEPLOY_KEY')
         else:
             raise RuntimeError(
                 "Use lektor deploy --key <ACCESS_TOKEN>,"
