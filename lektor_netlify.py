@@ -26,7 +26,7 @@ class NetlifyPublisher(Publisher):
                 " see https://github.com/ajdavis/lektor-netlify/README.md")
         
         redirects_content = os.path.join(self.env.root_path, 'content', '_redirects')
-        redirects_build = os.path.join(self.env.root_path, 'build', '_redirects')
+        redirects_build = os.path.join(self.output_path, '_redirects')
         if os.path.isfile(redirects_content):
             shutil.copy2(redirects_content, redirects_build)
 
