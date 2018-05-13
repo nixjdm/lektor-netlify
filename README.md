@@ -8,7 +8,7 @@ Install the `netlify` command-line program according to [the instructions on net
 
 Add lektor-netlify to your project from the command line:
 
-```
+```shell
 lektor plugins add lektor-netlify
 ```
 
@@ -30,7 +30,7 @@ Get a personal access token from Netlify's "applications" page:
 
 * [Applications](https://app.netlify.com/applications)
 
-You must use this access token each time you publish. If your project file is private you can save the token there:
+You must use this access token each time you publish. **If your project file is private** you can save the token there. Do not commit this!
 
 ```ini
 [servers.production]
@@ -41,12 +41,12 @@ key = ACCESS_TOKEN
 
 Now deploy your site like:
 
-```
+```shell
 lektor deploy production
 ```
 
 Otherwise, pass the token on the command line:
 
-```
+```shell
 lektor deploy production --key ACCESS_TOKEN    
 ```

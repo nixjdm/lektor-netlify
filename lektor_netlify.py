@@ -66,7 +66,7 @@ class NetlifyPublisher(Publisher):
 
 class NetlifyPlugin(Plugin):
     name = u'Netlify'
-    description = u'Publishes your Lektor site with Netlify.'
+    description = u'Lektor plugin to publish your site with Netlify.'
 
     def on_setup_env(self, **extra):
         try:
