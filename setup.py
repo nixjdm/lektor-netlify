@@ -24,7 +24,7 @@ setup(
     name='lektor-netlify',
     py_modules=['lektor_netlify'],
     url='https://github.com/nixjdm/lektor-netlify',
-    version='0.2',
+    version='0.3',
     classifiers=[
         'Environment :: Plugins',
         'Environment :: Web Environment',

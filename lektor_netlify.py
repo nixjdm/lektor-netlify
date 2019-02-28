@@ -51,14 +51,15 @@ class NetlifyPublisher(Publisher):
 
         cmd = [
             'netlify',
-            '-t', access_token,
             'deploy',
-            '-s', site_id,
-            '-p', self.output_path]
+            '--auth', access_token,
+            '--site', site_id,
+            '--dir', self.output_path]
 
         if draft:
             yield "Deploying as draft"
-            cmd.append('--draft')
+        else:
+            cmd.append('--prod')
 
         for line in Command(cmd):
             yield line
