@@ -31,6 +31,12 @@ class NetlifyPublisher(Publisher):
 
         response.raise_for_status()
         j = response.json()
+        
+        try:
+            unicode        # check if unicode is defined
+        except NameError:  # not found: python 3: replace by str
+            unicode = str
+        
         for site in j:
             site_url = urls.url_parse(unicode(site['url']))
             if site_url.host == host:
